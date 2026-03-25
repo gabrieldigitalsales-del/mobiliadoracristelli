@@ -1,81 +1,84 @@
-(function () {
-  const config = window.STORE_CONFIG || {};
-  const year = new Date().getFullYear();
-  const toast = document.getElementById('toast');
-  const wifiCard = document.getElementById('wifiCard');
-  const wifiToggle = document.getElementById('wifiToggle');
-  const wifiDetails = document.getElementById('wifiDetails');
+const CONFIG = {
+  googleReviewUrl: "https://g.page/r/SEU-LINK-DE-AVALIACAO/review",
+  wifi: {
+    ssid: "NomeDoWiFi",
+    password: "12345678"
+  },
+  instagramUrl: "https://instagram.com/seuinstagram",
+  whatsappUrl: "https://wa.me/5500000000000"
+};
 
-  document.getElementById('currentYear').textContent = year;
+const googleLink = document.getElementById("googleLink");
+const instagramLink = document.getElementById("instagramLink");
+const whatsappLink = document.getElementById("whatsappLink");
+const wifiSsid = document.getElementById("wifiSsid");
+const wifiPassword = document.getElementById("wifiPassword");
+const wifiToggle = document.getElementById("wifiToggle");
+const copyPassword = document.getElementById("copyPassword");
 
-  if (config.storeName) {
-    document.title = config.storeName;
-    const title = document.querySelector('h1');
-    if (title) title.textContent = config.storeName;
+googleLink.href = CONFIG.googleReviewUrl;
+instagramLink.href = CONFIG.instagramUrl;
+whatsappLink.href = CONFIG.whatsappUrl;
+wifiSsid.textContent = CONFIG.wifi.ssid;
+wifiPassword.textContent = CONFIG.wifi.password;
+
+let timer = null;
+let remaining = 10;
+
+function closeWifi() {
+  wifiToggle.classList.remove("open");
+  wifiToggle.setAttribute("aria-expanded", "false");
+  remaining = 10;
+
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
   }
+}
 
-  if (config.footerText) {
-    document.getElementById('footerText').textContent = config.footerText.replace('{year}', year);
+function openWifi() {
+  if (timer) clearInterval(timer);
+
+  remaining = 10;
+  wifiToggle.classList.add("open");
+  wifiToggle.setAttribute("aria-expanded", "true");
+
+  timer = setInterval(() => {
+    remaining -= 1;
+    if (remaining <= 0) closeWifi();
+  }, 1000);
+}
+
+function toggleWifi(event) {
+  const clickedCopyButton = event.target.closest("#copyPassword");
+  if (clickedCopyButton) return;
+
+  const isOpen = wifiToggle.classList.contains("open");
+  if (isOpen) {
+    closeWifi();
+  } else {
+    openWifi();
   }
+}
 
-  if (config.wifi) {
-    document.getElementById('wifiName').textContent = config.wifi.ssid || '-';
-    document.getElementById('wifiPassword').textContent = config.wifi.password || '-';
-    document.getElementById('wifiHelp').textContent = config.wifi.helpText || '';
+wifiToggle.addEventListener("click", toggleWifi);
+wifiToggle.addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    toggleWifi(event);
   }
+});
 
-  const linkMap = {
-    googleLink: config.links && config.links.googleReview,
-    instagramLink: config.links && config.links.instagram,
-    whatsappLink: config.links && config.links.whatsapp
-  };
+copyPassword.addEventListener("click", async (event) => {
+  event.stopPropagation();
 
-  Object.entries(linkMap).forEach(([id, url]) => {
-    const el = document.getElementById(id);
-    if (!el) return;
-
-    if (url && url !== '#') {
-      el.href = url;
-    } else {
-      el.href = 'javascript:void(0)';
-      el.classList.add('disabled');
-      el.addEventListener('click', function (event) {
-        event.preventDefault();
-        showToast('Preencha este link no arquivo config.js');
-      });
-    }
-  });
-
-  if (wifiToggle && wifiDetails && wifiCard) {
-    wifiToggle.addEventListener('click', function () {
-      const isOpen = wifiToggle.getAttribute('aria-expanded') === 'true';
-      wifiToggle.setAttribute('aria-expanded', String(!isOpen));
-      wifiDetails.hidden = isOpen;
-      wifiCard.classList.toggle('open', !isOpen);
-    });
+  try {
+    await navigator.clipboard.writeText(CONFIG.wifi.password);
+    copyPassword.style.opacity = "0.65";
+    setTimeout(() => {
+      copyPassword.style.opacity = "1";
+    }, 500);
+  } catch (error) {
+    console.error("Não foi possível copiar a senha.");
   }
-
-  document.querySelectorAll('[data-copy-target]').forEach((button) => {
-    button.addEventListener('click', async () => {
-      const targetId = button.getAttribute('data-copy-target');
-      const target = document.getElementById(targetId);
-      const text = target ? target.textContent.trim() : '';
-      try {
-        await navigator.clipboard.writeText(text);
-        showToast('Copiado!');
-      } catch (error) {
-        showToast('Não foi possível copiar');
-      }
-    });
-  });
-
-  let toastTimer;
-  function showToast(message) {
-    toast.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      toast.classList.remove('show');
-    }, 2200);
-  }
-})();
+});

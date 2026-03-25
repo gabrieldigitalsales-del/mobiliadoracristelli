@@ -1,378 +1,304 @@
-:root {
-  --bg: #0f0f13;
-  --panel: rgba(255, 255, 255, 0.08);
-  --panel-strong: rgba(255, 255, 255, 0.12);
-  --line: rgba(255, 255, 255, 0.12);
-  --text: #ffffff;
-  --muted: rgba(255, 255, 255, 0.74);
-  --accent: #d91e2c;
-  --accent-2: #f25a4b;
-  --accent-soft: rgba(217, 30, 44, 0.18);
-  --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-}
-
 * {
   box-sizing: border-box;
+}
+
+:root {
+  --bg: #fffaf7;
+  --bg-soft: #fff2ec;
+  --card: rgba(255, 255, 255, 0.82);
+  --border: rgba(194, 112, 98, 0.18);
+  --text: #532d2d;
+  --muted: #8a6760;
+  --accent: #d64d4d;
+  --accent-2: #f2b6aa;
+  --shadow: 0 18px 40px rgba(173, 95, 95, 0.12);
+  --radius: 24px;
 }
 
 html, body {
   margin: 0;
   min-height: 100%;
+  font-family: "Inter", system-ui, sans-serif;
+  background: radial-gradient(circle at top left, #fff7f2 0%, #fffaf7 35%, #fffdfb 100%);
+  color: var(--text);
 }
 
 body {
-  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  background:
-    radial-gradient(circle at top left, rgba(242, 90, 75, 0.2), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(217, 30, 44, 0.18), transparent 28%),
-    linear-gradient(180deg, #111216 0%, #0a0a0d 100%);
-  color: var(--text);
+  position: relative;
   overflow-x: hidden;
 }
 
-.bg-glow {
+.bg-orb {
   position: fixed;
   border-radius: 999px;
-  filter: blur(80px);
-  opacity: 0.28;
+  filter: blur(30px);
+  opacity: 0.45;
+  z-index: 0;
   pointer-events: none;
 }
 
-.bg-glow-1 {
-  width: 240px;
-  height: 240px;
-  background: #f25a4b;
-  top: -40px;
+.orb-1 {
+  width: 280px;
+  height: 280px;
+  background: #ffe2d7;
+  top: -80px;
+  right: -60px;
+}
+
+.orb-2 {
+  width: 220px;
+  height: 220px;
+  background: #ffd1d1;
+  bottom: -70px;
   left: -60px;
 }
 
-.bg-glow-2 {
-  width: 260px;
-  height: 260px;
-  background: #d91e2c;
-  right: -80px;
-  bottom: 10%;
-}
-
-.page {
-  width: min(100%, 760px);
+.container {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 980px);
   margin: 0 auto;
-  padding: 22px 18px 36px;
-  position: relative;
-}
-
-.topbar {
-  margin-bottom: 18px;
-}
-
-.brand {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  justify-content: flex-start;
-}
-
-.brand-logo {
-  width: 76px;
-  height: 76px;
-  object-fit: contain;
-  filter: drop-shadow(0 10px 30px rgba(0, 0, 0, 0.25));
-  flex: 0 0 auto;
-}
-
-.eyebrow,
-.label,
-.wifi-label {
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  font-size: 0.74rem;
-}
-
-.eyebrow,
-.label,
-.helper,
-.wifi-label,
-.footer p,
-.hero p,
-.link-card p,
-.wifi-preview {
-  color: var(--muted);
-}
-
-h1 {
-  margin: 4px 0 0;
-  font-size: clamp(1.55rem, 4vw, 2.2rem);
-  line-height: 1.06;
-}
-
-h2 {
-  margin: 14px 0 10px;
-  font-size: clamp(1.6rem, 4vw, 2.5rem);
-  line-height: 1.08;
-}
-
-h3 {
-  margin: 4px 0 0;
-  font-size: 1.25rem;
-}
-
-p {
-  margin: 0;
-  line-height: 1.6;
-}
-
-.card {
-  position: relative;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.06));
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  box-shadow: var(--shadow);
-  backdrop-filter: blur(14px);
+  padding: 34px 18px 46px;
 }
 
 .hero {
-  padding: 24px;
-  margin-bottom: 18px;
+  text-align: center;
+  padding: 12px 0 24px;
 }
 
-.badge {
+.logo-wrap {
+  width: 132px;
+  height: 132px;
+  margin: 0 auto 20px;
+  border-radius: 32px;
+  background: linear-gradient(180deg, rgba(255,255,255,.96), rgba(255,244,241,.94));
+  border: 1px solid rgba(214, 77, 77, 0.12);
+  box-shadow: var(--shadow);
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chip {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 12px;
+  gap: 8px;
+  padding: 10px 14px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  background: rgba(255, 255, 255, 0.74);
+  border: 1px solid var(--border);
+  color: var(--accent);
   font-weight: 700;
-  background: var(--accent-soft);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  letter-spacing: 0.02em;
+}
+
+h1 {
+  margin: 16px 0 10px;
+  font-size: clamp(2rem, 5vw, 3.3rem);
+  line-height: 1.05;
+}
+
+.subtitle {
+  margin: 0 auto;
+  max-width: 640px;
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.65;
 }
 
 .grid {
   display: grid;
-  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 18px;
 }
 
-.link-card,
-.wifi-card {
-  padding: 20px;
-}
-
-.link-card {
+.card {
   text-decoration: none;
   color: inherit;
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  background: var(--card);
+  backdrop-filter: blur(14px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 22px;
+  transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
 }
 
-.link-card:hover,
-.wifi-card:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.22);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.08));
+.card-link,
+.wifi-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.card:hover,
+.card:focus-visible,
+.wifi-card:hover,
+.wifi-card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 48px rgba(173, 95, 95, 0.17);
+  border-color: rgba(214, 77, 77, 0.24);
+}
+
+.card-icon {
+  width: 54px;
+  height: 54px;
+  min-width: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 1.45rem;
+  background: linear-gradient(135deg, #fff, #ffe8e1);
+  border: 1px solid rgba(214, 77, 77, 0.12);
+}
+
+.card h2 {
+  margin: 0 0 4px;
+  font-size: 1.1rem;
+}
+
+.card p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+  font-size: 0.95rem;
+}
+
+.card-cta {
+  margin-left: auto;
+  align-self: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ffe8df, #fff6f2);
+  border: 1px solid rgba(214, 77, 77, 0.14);
+  font-weight: 700;
+  color: var(--accent);
+  white-space: nowrap;
+}
+
+.wifi-card {
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  flex-direction: column;
+  align-items: stretch;
+  outline: none;
 }
 
 .card-head {
   display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 12px;
-}
-
-.icon {
-  display: inline-grid;
-  place-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 1.35rem;
-  flex: 0 0 auto;
-}
-
-.icon-brand {
-  padding: 10px;
-}
-
-.brand-svg {
-  width: 100%;
-  height: 100%;
-}
-
-.instagram .icon-brand {
-  color: #fff;
-  background: linear-gradient(135deg, #833ab4 0%, #fd1d1d 55%, #fcb045 100%);
-  box-shadow: 0 10px 24px rgba(253, 29, 29, 0.28);
-}
-
-.whatsapp .icon-brand {
-  color: #fff;
-  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.28);
-}
-
-.wifi-card {
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-}
-
-.wifi-toggle {
-  width: 100%;
-  border: 0;
-  padding: 0;
-  background: transparent;
-  color: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.wifi-head {
-  margin-bottom: 8px;
-}
-
-.wifi-title {
-  display: block;
-  margin-top: 4px;
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.wifi-head-right {
-  display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
 }
 
-.chevron {
-  display: inline-grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.08);
-  font-size: 1.2rem;
-  transition: transform 0.2s ease;
+.wifi-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: max-height .35s ease, opacity .28s ease, transform .28s ease, margin-top .28s ease;
+  margin-top: 0;
 }
 
-.wifi-card.open .chevron {
-  transform: rotate(180deg);
-}
-
-.wifi-preview {
-  display: block;
-  padding-right: 12px;
-}
-
-.wifi-details {
+.wifi-card.open .wifi-panel {
+  max-height: 220px;
+  opacity: 1;
+  transform: translateY(0);
   margin-top: 16px;
 }
 
-.wifi-box {
+.wifi-row {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  background: rgba(0, 0, 0, 0.16);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  margin-bottom: 12px;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 0;
+  border-top: 1px dashed rgba(194, 112, 98, 0.25);
 }
 
-.wifi-box strong {
-  display: block;
-  margin-top: 4px;
-  font-size: 1rem;
+.label {
+  color: var(--muted);
 }
 
-.mini-btn {
-  border: 0;
-  border-radius: 14px;
-  padding: 12px 14px;
+.password-value-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.password-value-wrap strong {
+  line-height: 1;
+}
+
+.copy-inline-btn {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
   cursor: pointer;
-  font-weight: 700;
-  color: #fff;
-  background: linear-gradient(135deg, var(--accent-2), var(--accent));
-  box-shadow: 0 12px 30px rgba(217, 30, 44, 0.25);
+  flex: 0 0 auto;
 }
 
-.mini-btn:hover {
-  filter: brightness(1.05);
+.copy-inline-btn img {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+  display: block;
 }
 
-.helper {
-  font-size: 0.92rem;
+.copy-inline-btn:hover {
+  opacity: 0.75;
 }
+
+.google .card-icon { background: linear-gradient(135deg, #fff, #fff0d9); }
+.instagram .card-icon { background: linear-gradient(135deg, #fff, #ffe0ef); }
+.whatsapp .card-icon { background: linear-gradient(135deg, #fff, #dff8e8); }
 
 .footer {
-  padding: 18px 4px 0;
   text-align: center;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: 0.9rem;
 }
 
-.toast {
-  position: fixed;
-  left: 50%;
-  bottom: 18px;
-  transform: translateX(-50%) translateY(20px);
-  padding: 12px 16px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.96);
-  color: #111;
-  font-weight: 700;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+code {
+  background: rgba(255,255,255,0.8);
+  padding: 2px 6px;
+  border-radius: 8px;
 }
 
-.toast.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.link-card.disabled {
-  opacity: 0.65;
-}
-
-@media (min-width: 760px) {
-  .page {
-    padding: 28px 22px 42px;
-  }
-
+@media (max-width: 760px) {
   .grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
-  .hero {
-    padding: 28px;
-  }
-
-  .wifi-card {
-    grid-column: 1 / -1;
-  }
-}
-
-@media (max-width: 540px) {
-  .brand {
+  .card-link,
+  .card-head {
     align-items: flex-start;
   }
 
-  .brand-logo {
-    width: 64px;
-    height: 64px;
+  .card-cta {
+    margin-left: 0;
+    margin-top: 12px;
   }
 
-  .card,
-  .hero,
-  .link-card,
-  .wifi-card {
-    border-radius: 20px;
+  .card-link {
+    flex-wrap: wrap;
   }
 
-  .wifi-box {
-    align-items: flex-start;
-    flex-direction: column;
-  }
-
-  .mini-btn {
-    width: 100%;
-    padding: 10px 12px;
+  .wifi-row {
+    flex-direction: row;
+    align-items: center;
   }
 }
