@@ -320,4 +320,14 @@ h1 {
     flex-direction: row;
     align-items: center;
   }
+ @media (max-width: 760px) {
+  .wifi-card .card-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .wifi-card .card-cta {
+    margin-left: 0;
+    margin-top: 10px;
+  }
 }
