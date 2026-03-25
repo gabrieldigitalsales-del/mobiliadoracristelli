@@ -329,5 +329,6 @@ h1 {
   .wifi-card .card-cta {
     margin-left: 0;
     margin-top: 10px;
+    align-self: flex-start;
   }
 }
