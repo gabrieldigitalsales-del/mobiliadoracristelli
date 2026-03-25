@@ -4,13 +4,11 @@
 
 :root {
   --bg: #fffaf7;
-  --bg-soft: #fff2ec;
   --card: rgba(255, 255, 255, 0.82);
   --border: rgba(194, 112, 98, 0.18);
   --text: #532d2d;
   --muted: #8a6760;
   --accent: #d64d4d;
-  --accent-2: #f2b6aa;
   --shadow: 0 18px 40px rgba(173, 95, 95, 0.12);
   --radius: 24px;
 }
@@ -157,6 +155,36 @@ h1 {
   font-size: 1.45rem;
   background: linear-gradient(135deg, #fff, #ffe8e1);
   border: 1px solid rgba(214, 77, 77, 0.12);
+  overflow: hidden;
+}
+
+.image-icon {
+  padding: 0;
+  background: rgba(255,255,255,0.8);
+}
+
+.icon-img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.icon-square {
+  width: 100%;
+  height: 100%;
+}
+
+.icon-google {
+  width: 220%;
+  height: 220%;
+  object-fit: cover;
+  transform: scale(1.05);
+}
+
+.wifi-fit {
+  width: 88%;
+  height: 88%;
 }
 
 .card h2 {
@@ -261,21 +289,12 @@ h1 {
   opacity: 0.75;
 }
 
-.google .card-icon { background: linear-gradient(135deg, #fff, #fff0d9); }
-.instagram .card-icon { background: linear-gradient(135deg, #fff, #ffe0ef); }
-.whatsapp .card-icon { background: linear-gradient(135deg, #fff, #dff8e8); }
-
 .footer {
   text-align: center;
   margin-top: 20px;
   color: var(--muted);
   font-size: 0.9rem;
-}
-
-code {
-  background: rgba(255,255,255,0.8);
-  padding: 2px 6px;
-  border-radius: 8px;
+  line-height: 1.6;
 }
 
 @media (max-width: 760px) {
