@@ -1,11 +1,11 @@
 const CONFIG = {
-  googleReviewUrl: "https://g.page/r/SEU-LINK-DE-AVALIACAO/review",
+  googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Mobiliadora+Cristelli+Sete+Lagoas+MG",
   wifi: {
     ssid: "NomeDoWiFi",
     password: "12345678"
   },
-  instagramUrl: "https://instagram.com/seuinstagram",
-  whatsappUrl: "https://wa.me/5500000000000"
+  instagramUrl: "https://www.instagram.com/mobcristelli",
+  whatsappUrl: "https://wa.me/553188606894"
 };
 
 const googleLink = document.getElementById("googleLink");
