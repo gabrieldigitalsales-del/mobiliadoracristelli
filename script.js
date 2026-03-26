@@ -1,7 +1,7 @@
 const CONFIG = {
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Mobiliadora+Cristelli+Sete+Lagoas+MG",
   wifi: {
-    ssid: "Cristelli_",
+    ssid: "Cristelli_Clientes",
     password: "cliente01"
   },
   instagramUrl: "https://www.instagram.com/mobcristelli",
