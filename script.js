@@ -1,8 +1,8 @@
 const CONFIG = {
   googleReviewUrl: "https://www.google.com/maps/search/?api=1&query=Mobiliadora+Cristelli+Sete+Lagoas+MG",
   wifi: {
-    ssid: "VIVOFIBRA-1D20",
-    password: "6C427B7058"
+    ssid: "Cristelli_Cliente",
+    password: "cliente01"
   },
   instagramUrl: "https://www.instagram.com/mobcristelli",
   whatsappUrl: "https://wa.me/553188606894"
